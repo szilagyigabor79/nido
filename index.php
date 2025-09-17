@@ -105,7 +105,8 @@ function card_html($i){
     @keyframes scroll-left { from { transform: translateX(0) } to { transform: translateX(-50%) } }
   </style>
 </head>
-<body class="bg-gray-50 text-gray-900">
+<body class="bg-gray-50 text-gray-900 flex flex-col min-h-screen">
+
 
   <!-- FEJLÉC -->
   <header class="bg-gradient-to-r from-gray-100 to-gray-200 border-b border-gray-200">
@@ -113,10 +114,11 @@ function card_html($i){
       <a href="/nido/index.php" class="font-bold text-pink-900">nidoingatlan.hu</a>
       <nav class="text-sm flex gap-6">
         <a class="hover:text-pink-900" href="/nido/index.php">Főoldal</a>
-        <a class="hover:text-pink-900" href="/nido/rolam.html">Rólam</a>
+        <!-- <a class="hover:text-pink-900" href="/nido/rolam.html">Rólam</a> -->
         <a class="hover:text-pink-900" href="/nido/kereso.html">Kereső</a>
-        <a class="hover:text-pink-900" href="/nido/otthon-start.html">Otthon Start</a>
-        <a class="hover:text-pink-900" href="/nido/csok-plusz.html">CSOK +</a>
+        <a class="hover:text-pink-900" href="https://startolj-ra.hu/"target="_blank" rel="noopener noreferrer">Otthon Start</a>
+        <a class="hover:text-pink-900" href="https://www.mnb.hu/fogyasztovedelem/hitel-lizing/jelzalog-hitelek/csok-plusz-hitelprogram"target="_blank" rel="noopener noreferrer">CSOK +</a>
+        </nav>
       </nav>
     </div>
   </header>
@@ -161,7 +163,7 @@ function card_html($i){
   </section>
 
   <!-- LÁBLÉC – sötétszürke alap -->
-  <footer class="mt-12 bg-gray-900 text-gray-200">
+  <footer class="mt-auto bg-gray-900 text-gray-200">
     <div class="max-w-6xl mx-auto px-4 py-8 grid gap-3 text-sm sm:flex sm:items-center sm:justify-between">
       <div class="flex items-center gap-3">
         <!-- Telefon ikon -->
