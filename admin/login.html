@@ -1,0 +1,18 @@
+<!doctype html><html lang="hu"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin belépés</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<body class="min-h-screen bg-gray-50 flex items-center justify-center">
+  <form action="login.php" method="post" class="bg-white p-6 rounded-xl shadow w-[360px] grid gap-4">
+    <h1 class="text-xl font-bold">NIDO – Admin belépés</h1>
+    <label class="grid gap-1">
+      <span class="text-sm text-gray-600">E-mail</span>
+      <input name="email" type="email" class="border rounded px-3 py-2" required>
+    </label>
+    <label class="grid gap-1">
+      <span class="text-sm text-gray-600">Jelszó</span>
+      <input name="password" type="password" class="border rounded px-3 py-2" required>
+    </label>
+    <button class="bg-pink-800 text-white rounded px-4 py-2 hover:bg-pink-900">Belépés</button>
+  </form>
+</body></html>
