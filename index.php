@@ -111,9 +111,9 @@ function card_html($i){
   <!-- FEJLÉC -->
   <header class="bg-gradient-to-r from-gray-100 to-gray-200 border-b border-gray-200">
     <div class="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
-      <a href="/nido/index.php" class="font-bold text-pink-900">nidoingatlan.hu</a>
+      <a href="www.nidoingatlan.hu"class="font-bold text-pink-900">nidoingatlan.hu</a>
       <nav class="text-sm flex gap-6">
-        <a class="hover:text-pink-900" href="/nido/index.php">Főoldal</a>
+        <a class="hover:text-pink-900" href="www.nidoingatlan.hu">Főoldal</a>
         <!-- <a class="hover:text-pink-900" href="/nido/rolam.html">Rólam</a> -->
         <a class="hover:text-pink-900" href="/nido/kereso.html">Kereső</a>
         <a class="hover:text-pink-900" href="https://startolj-ra.hu/"target="_blank" rel="noopener noreferrer">Otthon Start</a>
