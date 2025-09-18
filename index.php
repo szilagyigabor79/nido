@@ -2,7 +2,7 @@
 /* ====== Adatbázis kapcsolat ====== */
 $DB_HOST = '127.0.0.1';
 $DB_PORT = 3306;
-$DB_NAME = 'igngatlan_db';         // ha más, írd át
+$DB_NAME = 'igngatlan_db';         // HA nálad tényleg "igngatlan_db", írd vissza arra
 $DB_USER = 'nidoapp';
 $DB_PASS = 'ValamiErősJelszó123!';
 
@@ -59,7 +59,7 @@ function card_html($i){
   $title = trim(($i['varos'] ?? '') . ' — ' . ($i['utca'] ?? ''));
   $title = e($title ?: 'Ingatlan');
   $price = hu_price($i['ar_ft'] ?? 0);
-  $link  = '/ingatlan.php?id='.(int)$i['id'];
+  $link  = 'ingatlan.php?id='.(int)$i['id']; // relatív link is elég
 
   $badge = '';
   $jel   = $i['jeloles'] ?? '';
@@ -107,18 +107,16 @@ function card_html($i){
 </head>
 <body class="bg-gray-50 text-gray-900 flex flex-col min-h-screen">
 
-
   <!-- FEJLÉC -->
   <header class="bg-gradient-to-r from-gray-100 to-gray-200 border-b border-gray-200">
     <div class="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
-      <a href="www.nidoingatlan.hu"class="font-bold text-pink-900">nidoingatlan.hu</a>
+      <a href="/nido/index.php" class="font-bold text-pink-900">nidoingatlan.hu</a>
       <nav class="text-sm flex gap-6">
-        <a class="hover:text-pink-900" href="www.nidoingatlan.hu">Főoldal</a>
+        <a class="hover:text-pink-900" href="/nido/index.php">Főoldal</a>
         <!-- <a class="hover:text-pink-900" href="/nido/rolam.html">Rólam</a> -->
         <a class="hover:text-pink-900" href="/nido/kereso.html">Kereső</a>
-        <a class="hover:text-pink-900" href="https://startolj-ra.hu/"target="_blank" rel="noopener noreferrer">Otthon Start</a>
-        <a class="hover:text-pink-900" href="https://www.mnb.hu/fogyasztovedelem/hitel-lizing/jelzalog-hitelek/csok-plusz-hitelprogram"target="_blank" rel="noopener noreferrer">CSOK +</a>
-        </nav>
+        <a class="hover:text-pink-900" href="https://startolj-ra.hu/" target="_blank" rel="noopener noreferrer">Otthon Start</a>
+        <a class="hover:text-pink-900" href="https://www.mnb.hu/fogyasztovedelem/hitel-lizing/jelzalog-hitelek/csok-plusz-hitelprogram" target="_blank" rel="noopener noreferrer">CSOK +</a>
       </nav>
     </div>
   </header>
@@ -133,8 +131,6 @@ function card_html($i){
     </p>
   </section>
 
-  <!-- (NINCS szekciócím) -->
-
   <!-- ÖSSZES AKTÍV INGATLAN – középre igazítva -->
   <section class="mt-6">
     <div class="marquee-outer overflow-hidden">
@@ -143,7 +139,7 @@ function card_html($i){
         if (!empty($ingatlanok)) {
           foreach ($ingatlanok as $k) echo card_html($k);
         } else {
-          // Ha nincs adat, tegyünk be 3 demót középre (nem animáljuk)
+          // Ha nincs adat, demo
           $demo = [
             ['id'=>1,'varos'=>'Budapest','utca'=>'Andrássy út','ar_ft'=>89000000,'boritokep'=>'/uploads/demo1.jpg','jeloles'=>'Új'],
             ['id'=>2,'varos'=>'Győr','utca'=>'Baross út','ar_ft'=>59900000,'boritokep'=>'/uploads/demo2.jpg','jeloles'=>'Árcsökkent'],
@@ -162,7 +158,7 @@ function card_html($i){
     <?php endif; ?>
   </section>
 
-  <!-- LÁBLÉC – sötétszürke alap -->
+  <!-- LÁBLÉC – sötétszürke alap, mindig alul -->
   <footer class="mt-auto bg-gray-900 text-gray-200">
     <div class="max-w-6xl mx-auto px-4 py-8 grid gap-3 text-sm sm:flex sm:items-center sm:justify-between">
       <div class="flex items-center gap-3">
@@ -226,6 +222,3 @@ function card_html($i){
   </script>
 </body>
 </html>
-
-
-
