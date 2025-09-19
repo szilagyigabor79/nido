@@ -53,9 +53,20 @@ $ingatlanok = $st->fetchAll();
 function hu_price($n){ return number_format((float)$n, 0, ',', ' ') . ' Ft'; }
 function e($v){ return htmlspecialchars((string)$v, ENT_QUOTES, 'UTF-8'); }
 
+function base_url_prefix(): string {
+  return rtrim(dirname($_SERVER['PHP_SELF']), '/');
+}
+function asset_url(string $path): string {
+  $path = ltrim($path, '/'); // /uploads/.. -> uploads/..
+  return base_url_prefix() . '/' . $path;
+}
+
+
 /* Kártya komponens (badge: jeloles) */
 function card_html($i){
-  $img   = e($i['boritokep'] ?: '/uploads/placeholder.jpg');
+  $raw   = $i['boritokep'] ?: 'uploads/placeholder.jpg';
+  $img   = e(asset_url($raw));
+
   $title = trim(($i['varos'] ?? '') . ' — ' . ($i['utca'] ?? ''));
   $title = e($title ?: 'Ingatlan');
   $price = hu_price($i['ar_ft'] ?? 0);

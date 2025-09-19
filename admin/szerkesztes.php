@@ -171,7 +171,12 @@ $action = $id > 0 ? "frissites.php?id={$id}" : "mentes.php";
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
             <?php foreach ($kepek as $k): ?>
               <label class="block border rounded overflow-hidden bg-white shadow-sm">
-                <img src="<?= htmlspecialchars($k['kep_url']) ?>" alt="" style="width:100%;height:140px;object-fit:cover">
+              <?php
+                // kezeli a /uploads/... és az uploads/... formátumot is
+                $imgUrl = $rootBase . '/' . ltrim((string)$k['kep_url'], '/');
+               ?>
+                <img src="<?= htmlspecialchars($imgUrl) ?>" alt="" style="width:100%;height:140px;object-fit:cover">
+
                 <div class="p-2 flex items-center justify-between text-sm">
                   <label class="inline-flex items-center gap-2">
                     <input type="radio" name="existing_cover_id" value="<?= (int)$k['id'] ?>" <?= $k['is_cover'] ? 'checked' : '' ?>>

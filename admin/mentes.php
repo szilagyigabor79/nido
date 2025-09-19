@@ -187,9 +187,18 @@ if ($files) {
 }
 
 // --- Visszairányítás az admin listára (robosztus) ---
-if (file_exists(__DIR__.'/ingatlanok.php')) {
-  header('Location: ingatlanok.php?ok=1', true, 303);
+// --- Visszairányítás az admin listára (abszolút URL-lel, minden környezetben jó) ---
+$adminBase = rtrim(dirname($_SERVER['PHP_SELF']), '/'); // pl. /nido/admin
+$scheme    = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+$host      = $_SERVER['HTTP_HOST'];
+$go        = $scheme . '://' . $host . $adminBase . '/ingatlanok.php?ok=1';
+
+if (!headers_sent()) {
+  header('Location: ' . $go, true, 303);
+  exit;
+} else {
+  // ha valami már küldött kimenetet és a header nem megy el
+  echo '<meta http-equiv="refresh" content="0;url=' . htmlspecialchars($go, ENT_QUOTES, 'UTF-8') . '">';
+  echo '<script>location.href=' . json_encode($go) . ';</script>';
   exit;
 }
-header('Location: ../index.php?ok=1', true, 303);
-exit;
