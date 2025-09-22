@@ -45,6 +45,10 @@ $rootBase  = rtrim(dirname($adminBase), '/');           // pl. /nido
 
 $action = $id > 0 ? "frissites.php?id={$id}" : "mentes.php";
 ?>
+<form action="<?= htmlspecialchars($action) ?>" method="post" enctype="multipart/form-data" class="space-y-6">
+  <?php if ($id > 0): ?>
+    <input type="hidden" name="id" value="<?= (int)$id ?>">
+  <?php endif; ?>
 <!doctype html>
 <html lang="hu">
 <head>
