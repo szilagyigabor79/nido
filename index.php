@@ -72,13 +72,18 @@ function card_html($i){
   $price = hu_price($i['ar_ft'] ?? 0);
   $link  = 'ingatlan.php?id='.(int)$i['id']; // relatív link is elég
 
-  $badge = '';
-  $jel   = $i['jeloles'] ?? '';
-  if ($jel === 'Árcsökkent') {
-    $badge = '<span class="absolute top-2 right-2 bg-red-700 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">Árcsökkent</span>';
-  } elseif ($jel === 'Új') {
-    $badge = '<span class="absolute top-2 right-2 bg-green-700 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">Új</span>';
-  }
+  // BADGE – a DB SET mező (jeloles) alapján
+$badge = '';
+$tags  = array_filter(array_map('trim', explode(',', (string)($i['jeloles'] ?? ''))));
+
+if (in_array('Kiemelt', $tags, true)) {
+  $badge = '<span class="absolute top-2 right-2 bg-purple-700 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">Kiemelt</span>';
+} elseif (in_array('Árcsökkenés', $tags, true)) {
+  $badge = '<span class="absolute top-2 right-2 bg-red-700 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">Árcsökkent</span>';
+} elseif (in_array('Új a kínálatban', $tags, true)) {
+  $badge = '<span class="absolute top-2 right-2 bg-green-700 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">Új</span>';
+}
+
 
   ob_start(); ?>
   <article class="relative min-w-[280px] w-[280px] bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden">
@@ -125,7 +130,7 @@ function card_html($i){
       <nav class="text-sm flex gap-6">
         <a class="hover:text-pink-900" href="/nido/index.php">Főoldal</a>
         <!-- <a class="hover:text-pink-900" href="/nido/rolam.html">Rólam</a> -->
-        <a class="hover:text-pink-900" href="/nido/kereso.html">Kereső</a>
+        <a class="hover:text-pink-900" href="/nido/kereso.php">Kereső</a>
         <a class="hover:text-pink-900" href="https://startolj-ra.hu/" target="_blank" rel="noopener noreferrer">Otthon Start</a>
         <a class="hover:text-pink-900" href="https://www.mnb.hu/fogyasztovedelem/hitel-lizing/jelzalog-hitelek/csok-plusz-hitelprogram" target="_blank" rel="noopener noreferrer">CSOK +</a>
       </nav>
