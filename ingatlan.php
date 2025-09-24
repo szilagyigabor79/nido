@@ -112,7 +112,8 @@ $kepek = $gs->fetchAll();
         $hero = asset_url($hero);
         ?>
         <div class="bg-white rounded-2xl shadow overflow-hidden">
-          <img id="hero" src="<?= e($hero) ?>" alt="" class="w-full h-80 object-cover rounded">
+          <img id="hero" src="<?= e($hero) ?>" alt="" class="w-full aspect-video object-cover rounded">
+
 
           <?php if (count($kepek) > 1): ?>
             <div class="p-3 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
@@ -169,8 +170,8 @@ $kepek = $gs->fetchAll();
             <dd><?= e($rec['falazat'] ?? '—') ?></dd>
             <dt class="text-gray-500">Állapot</dt>
             <dd><?= e($rec['allapot'] ?? '—') ?></dd>
-            <dt class="text-gray-500">Státusz</dt>
-            <dd><?= e($rec['statusz'] ?? '—') ?></dd>
+            <?php /* <dt class="text-gray-500">Státusz</dt>
+            <dd><?= e($rec['statusz'] ?? '—') ?></dd>*/ ?>
           </dl>
 
           <?php if (!empty($rec['leiras'])): ?>
@@ -234,7 +235,7 @@ $kepek = $gs->fetchAll();
       selectThumb(thumbs[idx]);
     });
   </script>
-ß
+  ß
 </body>
 
 </html>
