@@ -182,23 +182,7 @@ $kepek = $gs->fetchAll();
     </div>
   </main>
 
-  <footer class="mt-auto bg-gray-900 text-gray-200">
-    <div class="max-w-7xl mx-auto px-4 py-8 grid gap-3 text-sm sm:flex sm:items-center sm:justify-between">
-      <div class="flex items-center gap-3">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 6.75c0 8.284 6.716 15 15 15h1.5a2.25 2.25 0 0 0 2.25-2.25v-2.05a1.5 1.5 0 0 0-1.264-1.482l-3.338-.557a1.5 1.5 0 0 0-1.286.43l-.97.97a12.035 12.035 0 0 1-5.385-5.385l.97-.97a1.5 1.5 0 0 0 .43-1.286l-.557-3.338A1.5 1.5 0 0 0 8.55 3.75H6.5A2.25 2.25 0 0 0 4.25 6v.75z" />
-        </svg>
-        <a href="tel:+36204465216" class="text-base hover:text-white">+36 20 446 5216</a>
-      </div>
-      <div class="flex items-center gap-3">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2C6.486 2 2 6.262 2 11.5S6.486 21 12 21c2.43 0 4.657-.816 6.33-2.19a1 1 0 1 0-1.286-1.536A8.022 8.022 0 0 1 12 19C7.589 19 4 15.865 4 11.5S7.589 4 12 4s8 3.135 8 7.5v.75c0 1.447-1.18 2.625-2.636 2.625-.868 0-1.636-.41-2.105-1.037A4.497 4.497 0 0 1 7.5 11.5a4.5 4.5 0 0 1 8.824-1.5 1 1 0 1 0 1.852-.74A6.5 6.5 0 1 0 18 15.75v.25c0 .241.195.437.436.437C19.228 16.437 20 15.664 20 14.75V11.5C20 6.262 17.514 2 12 2Zm0 6a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z" />
-        </svg>
-        <a href="mailto:erika@nidoingatlan.hu" class="text-base hover:text-white">erika@nidoingatlan.hu</a>
-      </div>
-      <div class="text-gray-400">&copy; <?= date('Y') ?> Nido Ingatlan</div>
-    </div>
-  </footer>
+  <?php include __DIR__ . '/footer.php'; ?>
 
   <script>
     // Váltás bélyegre kattintva
@@ -235,7 +219,7 @@ $kepek = $gs->fetchAll();
       selectThumb(thumbs[idx]);
     });
   </script>
-  ß
+  
 </body>
 
 </html>
