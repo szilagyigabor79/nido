@@ -1,120 +1,97 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="hu">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NIDO Ingatlan</title>
-  <meta name="description" content="NIDO Ingatlan – új és használt ingatlanok, tanácsadás" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Nido Ingatlan</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts: Montserrat -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <!-- Kézírásos, jól olvasható font (Merienda) -->
+  <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    .font-montserrat {
-      font-family: 'Montserrat', sans-serif;
+    :root{ --card-duration:650ms; --card-ease:cubic-bezier(.2,.7,.2,1); }
+    body{ font-family:"Merienda", system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background:#f7f7f7; }
+    @keyframes fadeUp{
+      from{ opacity:0; transform:translateY(16px) scale(.985); box-shadow:0 0 0 rgba(0,0,0,0); }
+      to  { opacity:1; transform:translateY(0)    scale(1);    box-shadow:0 25px 40px rgba(0,0,0,.12); }
     }
+    .card-animate{ opacity:0; animation:fadeUp var(--card-duration) var(--card-ease) forwards; animation-delay:120ms; }
+    @media (prefers-reduced-motion: reduce){ .card-animate{ animation:none; opacity:1; } }
   </style>
+<!-- Open Graph meta tagok -->
+<meta property="og:title" content="Nido Ingatlan – ingatlan eladás apró betűs rész nélkül">
+<meta property="og:description" content="Október végéig megkötött szerződésekre extra kedvezmény!">
+<meta property="og:image" content="https://nidoingatlan.hu/og-preview.jpg">
+<meta property="og:url" content="https://nidoingatlan.hu/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="hu_HU">
+
+<!-- opcionális: ha szeretnéd, hogy jobban nézzen ki megosztáskor -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Nido Ingatlan – ingatlan eladás apró betűs rész nélkül">
+<meta name="twitter:description" content="Október végéig megkötött szerződésekre extra kedvezmény!">
+<meta name="twitter:image" content="https://nidoingatlan.hu/og-preview.jpg">
+
+
 </head>
-<body class="bg-gray-50 text-gray-900 flex flex-col min-h-screen">
-  <!-- FELSŐ NAV -->
-  <header class="bg-gradient-to-r from-gray-100 to-gray-200 border-b border-gray-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
-      <!-- Logó / márka -->
-      <a href="index.html" class="text-pink-800 font-extrabold tracking-tight">
-        nidoingatlan.hu
-      </a>
-  
-      <!-- Menü -->
-      <nav class="flex items-center gap-6 text-sm">
-        <a href="index.html" class="hover:text-pink-800 font-medium">Főoldal</a>
-        <a href="rolam.html" class="hover:text-pink-800">Rólam</a>
-        <a href="kereso.php" class="hover:text-pink-800">Kereső</a>
-        <a href="otthon-start.html" class="hover:text-pink-800 font-medium">Otthon Start</a>
-        <a href="csok-plusz.html" class="hover:text-pink-800 font-medium">CSOK +</a>
+<body class="text-gray-900 flex flex-col min-h-screen">
+
+  <!-- FEJLÉC – marad -->
+  <header class="bg-gradient-to-b from-gray-100 to-white border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="#" class="font-bold text-pink-900 text-lg tracking-wide">nidoingatlan.hu</a>
+      <nav class="text-sm flex gap-8">
+        <!-- <a class="hover:text-pink-900" href="#">Rólam</a> -->
+        <a class="hover:text-pink-900" href="#">Kereső</a>
+        <a class="hover:text-pink-900" href="https://startolj-ra.hu/" target="_blank" rel="noopener noreferrer">Otthon Start</a>
+        <a class="hover:text-pink-900" href="https://www.mnb.hu/fogyasztovedelem/hitel-lizing/jelzalog-hitelek/csok-plusz-hitelprogram" target="_blank" rel="noopener noreferrer">CSOK +</a>
       </nav>
     </div>
   </header>
+
+  <!-- KÖZÉPSŐ KÁRTYA -->
+  <main class="flex-grow flex items-center justify-center p-6">
+    <div class="bg-[#ffe6ee] rounded-3xl shadow-2xl card-animate
+                w-full max-w-md p-8 mx-4 text-center">
+      <div class="flex justify-center mb-6">
+        <!-- PANELHÁZ LOGÓ -->
+        <svg xmlns="http://www.w3.org/2000/svg"
+             class="w-20 h-20 text-pink-700"
+             viewBox="0 0 64 64" aria-hidden="true">
+          <rect x="16" y="8" width="32" height="48" rx="4" ry="4" fill="currentColor"/>
+          <rect x="28" y="44" width="8" height="12" rx="1.5" fill="#ffffff"/>
+          <rect x="22" y="16" width="6" height="6" rx="1" fill="#ffffff"/>
+          <rect x="31" y="16" width="6" height="6" rx="1" fill="#ffffff"/>
+          <rect x="40" y="16" width="6" height="6" rx="1" fill="#ffffff"/>
+          <rect x="22" y="24" width="6" height="6" rx="1" fill="#ffffff"/>
+          <rect x="31" y="24" width="6" height="6" rx="1" fill="#ffffff"/>
+          <rect x="40" y="24" width="6" height="6" rx="1" fill="#ffffff"/>
+          <rect x="22" y="32" width="6" height="6" rx="1" fill="#ffffff"/>
+          <rect x="31" y="32" width="6" height="6" rx="1" fill="#ffffff"/>
+          <rect x="40" y="32" width="6" height="6" rx="1" fill="#ffffff"/>
+        </svg>
+      </div>
   
-
-  <!-- KÖZÉPSŐ TARTALOM -->
-  <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-    <!-- Új ingatlanok cím -->
-    <h1 class="text-3xl sm:text-4xl font-extrabold text-center font-montserrat tracking-wide uppercase text-[#5e0b2a] mb-8">
-      ÚJ INGATLANOK
-    </h1>    
-
-    <!-- Kártya-grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-
-      <!-- Kártya 1 -->
-      <article class="bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden relative">
-        <span class="absolute top-2 right-2 bg-pink-800 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
-          Új ingatlan
-        </span>
-        <img src="haz1.jpg" alt="Családi ház – Budapest XII. kerület" class="w-full h-48 object-cover">
-        <div class="p-4">
-          <h2 class="text-lg font-semibold">Budapest, XII. kerület</h2>
-          <p class="text-gray-600 text-sm">120 m² • 4 szoba • kertkapcsolatos</p>
-          <p class="text-xl font-bold text-pink-800 mt-2">145 000 000 Ft</p>
-          <a href="ingatlan1.html" class="mt-3 inline-block bg-pink-800 text-white px-4 py-2 rounded-lg hover:bg-pink-900">
-            Részletek
-          </a>
-        </div>
-      </article>
-
-      <!-- Kártya 2 -->
-      <article class="bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden relative">
-        <span class="absolute top-2 right-2 bg-pink-800 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
-          Új ingatlan
-        </span>
-        <img src="lakas1.jpg" alt="Lakás – Debrecen Belváros" class="w-full h-48 object-cover">
-        <div class="p-4">
-          <h3 class="text-lg font-semibold">Debrecen, Belváros</h3>
-          <p class="text-gray-600 text-sm">65 m² • 2 szoba • erkély</p>
-          <p class="text-xl font-bold text-pink-800 mt-2">45 500 000 Ft</p>
-          <a href="ingatlan2.html" class="mt-3 inline-block bg-pink-800 text-white px-4 py-2 rounded-lg hover:bg-pink-900">
-            Részletek
-          </a>
-        </div>
-      </article>
-
-      <!-- Kártya 3 -->
-      <article class="bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden relative">
-        <span class="absolute top-2 right-2 bg-pink-800 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
-          Új ingatlan
-        </span>
-        <img src="penthouse.jpg" alt="Penthouse – Balatonfüred" class="w-full h-48 object-cover">
-        <div class="p-4">
-          <h3 class="text-lg font-semibold">Balatonfüred, panorámás penthouse</h3>
-          <p class="text-gray-600 text-sm">200 m² • 5 szoba • terasz</p>
-          <p class="text-xl font-bold text-pink-800 mt-2">320 000 000 Ft</p>
-          <a href="ingatlan3.html" class="mt-3 inline-block bg-pink-800 text-white px-4 py-2 rounded-lg hover:bg-pink-900">
-            Részletek
-          </a>
-        </div>
-      </article>
-
+      <h1 class="text-green-800 font-bold tracking-wide mb-3 text-3xl">
+        NIDO INGATLAN
+      </h1>
+  
+      <p class="text-green-800 font-semibold leading-relaxed mb-6 text-lg">
+        OKTÓBER VÉGÉIG MEGKÖTÖTT SZERZŐDÉSEKRE<br>
+        EXTRA KEDVEZMÉNY!
+      </p>
+  
+      <p class="text-green-800 font-semibold mb-3 text-2xl select-all">
+        +36 20 446 5216
+      </p>
+  
+      <p class="text-green-800 font-semibold text-2xl break-all">
+        <a href="mailto:erika@nidoingatlan.hu" class="underline hover:text-green-900">
+          erika@nidoingatlan.hu
+        </a>
+      </p>
     </div>
   </main>
+  
 
-  <!-- LÁBLÉC -->
-  <footer class="bg-gray-800 text-gray-100 mt-10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-wrap items-center justify-center gap-12 text-lg">
-      <div class="flex items-center gap-3">
-        <!-- Telefon ikon (mint a fotón) -->
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M6.62 10.79a15.09 15.09 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 5a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.59a1 1 0 01-.25 1.01l-2.2 2.19z"/>
-        </svg>
-        <a href="tel:+36204465216" class="hover:text-pink-300 font-semibold">+36 20 446 5216</a>
-      </div>
-
-      <div class="flex items-center gap-3">
-        <!-- @ jel ikon -->
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 2C6.48 2 2 6.07 2 11c0 4.35 3.34 8 8.2 8 1.95 0 3.74-.43 5.11-1.23.47-.27.64-.87.37-1.35a1 1 0 0 0-1.38-.36C13.96 16.72 12.7 17 10.2 17 6.61 17 4 14.37 4 11 4 7.64 6.93 5 12 5s8 2.64 8 6.02c0 2.06-1.02 3.22-2.02 3.22-.7 0-1.13-.51-1.13-1.56V8.5a1 1 0 0 0-2 0v.58C13.97 8.39 12.84 8 11.6 8 9.08 8 7.2 9.62 7.2 12s1.88 4 4.4 4c1.26 0 2.38-.4 3.27-1.08.36.69 1.24 1.08 2.11 1.08 2.15 0 4.02-1.94 4.02-5.06C21 6.52 17.09 2 12 2Z"/>
-        </svg>
-        <a href="mailto:erika@nidoingatlan.hu" class="hover:text-pink-300 font-semibold">erika@nidoingatlan.hu</a>
-      </div>
-    </div>
-  </footer>
 </body>
 </html>
