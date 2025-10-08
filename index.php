@@ -100,7 +100,11 @@ function card_html($i)
   ob_start(); ?>
   <article class="relative min-w-[280px] w-[280px] bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden">
     <?= $badge ?>
-    <img src="<?= $img ?>" alt="<?= $title ?>" class="w-full h-48 object-cover">
+    <img
+      src="<?= $img ?>"
+      alt="<?= $title ?>"
+      class="w-full h-40 object-cover <?= ($i['statusz'] !== 'Aktív') ? 'grayscale opacity-60' : '' ?>">
+
 
     <div class="p-4">
       <h3 class="text-base font-semibold line-clamp-2"><?= $title ?></h3>
