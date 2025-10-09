@@ -65,16 +65,6 @@ function asset_url(string $path): string {
   return base_url_prefix() . '/' . $path;
 }
 
-/* ---- SEO URL segédek ---- */
-function base_origin(): string {
-  $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
-  $host   = $_SERVER['HTTP_HOST'] ?? 'localhost';
-  return $scheme . '://' . $host;
-}
-function current_url(): string {
-  return base_origin() . ($_SERVER['REQUEST_URI'] ?? '/');
-}
-
 /* ====== KÁRTYA KOMPONENS (ÚJ / ÁRCSÖKKENÉS / ELADVA) ====== */
 function card_html($i){
   $raw   = $i['boritokep'] ?: 'uploads/placeholder.jpg';
@@ -108,13 +98,10 @@ function card_html($i){
   // Elszürkítés csak eladott állapotban
   $imgClasses = 'w-full h-40 object-cover' . ($statusz === 'Eladva' ? ' grayscale opacity-60' : '');
 
-  // ALT + lazy + méret – nincs vizuális változás, csak SEO/performancia
-  $alt = e(trim(($i['varos'] ?? '') . ' ' . ($i['utca'] ?? '') . ' • ' . $price) ?: 'Ingatlan fotó');
-
   ob_start(); ?>
   <article class="relative min-w-[280px] w-[280px] bg-white rounded-2xl shadow-2xl hover:shadow-[0_25px_50px_rgba(0,0,0,0.25)] transition overflow-hidden">
     <?= $badgeHtml ?>
-    <img src="<?= $img ?>" alt="<?= $alt ?>" class="<?= $imgClasses ?>" loading="lazy" decoding="async" width="640" height="360">
+    <img src="<?= $img ?>" alt="<?= $title ?>" class="<?= $imgClasses ?>">
     <div class="p-4">
       <h3 class="text-base font-semibold line-clamp-2"><?= $title ?></h3>
       <p class="text-pink-900 font-bold mt-1"><?= $price ?></p>
@@ -132,88 +119,8 @@ function card_html($i){
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-
-  <?php
-    $site_name   = 'Nido Ingatlan';
-    $title       = 'Nido Ingatlan | Ingatlanközvetítés Budapesten – eladás apróbetű nélkül';
-    $description = 'Nido Ingatlan – lakások és házak Budapesten és környékén. Kiemelt hirdetések, átlátható díjak, teljes körű ügyintézés.';
-    $canonical   = base_origin() . '/';
-    $og_image    = base_origin() . '/uploads/og-default.jpg'; // 1200x630 kép javasolt
-  ?>
-
-  <title><?= e($title) ?></title>
-  <meta name="description" content="<?= e($description) ?>">
-  <link rel="canonical" href="<?= e($canonical) ?>">
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="<?= e($site_name) ?>">
-  <meta property="og:title" content="<?= e($title) ?>">
-  <meta property="og:description" content="<?= e($description) ?>">
-  <meta property="og:url" content="<?= e($canonical) ?>">
-  <meta property="og:image" content="<?= e($og_image) ?>">
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="<?= e($title) ?>">
-  <meta name="twitter:description" content="<?= e($description) ?>">
-  <meta name="twitter:image" content="<?= e($og_image) ?>">
-
-  <!-- Struktúrált adatok: WebSite + SearchAction -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Nido Ingatlan",
-    "url": "<?= e($canonical) ?>",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "<?= e(base_origin().'/kereso.php?q={query}') ?>",
-      "query-input": "required name=query"
-    }
-  }
-  </script>
-
-  <!-- Struktúrált adatok: RealEstateAgent -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "RealEstateAgent",
-    "name": "Nido Ingatlan",
-    "url": "<?= e($canonical) ?>",
-    "logo": "<?= e(base_origin().'/uploads/logo.png') ?>",
-    "image": "<?= e($og_image) ?>",
-    "telephone": "+36 20 446 5216",
-    "email": "erika@nidoingatlan.hu",
-    "address": {
-      "@type": "PostalAddress",
-      "addressCountry": "HU"
-    }
-  }
-  </script>
-
-  <?php
-    // Struktúrált adatok: ItemList a kezdőlapi kiemelt/új elemekhez (max 10) – csak ha van adat
-    if (!empty($ingatlanok)) {
-      $items = [];
-      $max = min(10, count($ingatlanok));
-      for ($i=0; $i<$max; $i++) {
-        $it = $ingatlanok[$i];
-        $items[] = [
-          "@type" => "ListItem",
-          "position" => $i+1,
-          "url" => base_origin() . "/ingatlan.php?id=" . (int)$it['id']
-        ];
-      }
-      $itemList = [
-        "@context" => "https://schema.org",
-        "@type"    => "ItemList",
-        "itemListElement" => $items
-      ];
-      echo '<script type="application/ld+json">'.json_encode($itemList, JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE).'</script>';
-    }
-  ?>
-
+  <title>Nido Ingatlan</title>
+  <meta name="description" content="Nido Ingatlan – ingatlan eladás apró betűs rész nélkül.">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     .marquee-outer.is-animated{
@@ -222,10 +129,6 @@ function card_html($i){
     }
     .marquee-track.animate{ animation: scroll-left 35s linear infinite; will-change: transform; }
     @keyframes scroll-left{ from{transform:translateX(0)} to{transform:translateX(-50%)} }
-    /* SEO-cím vizuális rejtése (nem változtat a kinézeten) */
-    .sr-only{
-      position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
-    }
   </style>
 </head>
 <body class="bg-gray-50 text-gray-900 flex flex-col min-h-screen">
@@ -239,7 +142,6 @@ function card_html($i){
         <a class="hover:text-pink-900" href="/kereso.php">Kereső</a>
         <a class="hover:text-pink-900" href="https://startolj-ra.hu/" target="_blank" rel="noopener noreferrer">Otthon Start</a>
         <a class="hover:text-pink-900" href="https://www.mnb.hu/fogyasztovedelem/hitel-lizing/jelzalog-hitelek/csok-plusz-hitelprogram" target="_blank" rel="noopener noreferrer">CSOK +</a>
-        <a class="hover:text-pink-900" href="/kapcsolat.php">Kapcsolat</a>
       </nav>
     </div>
   </header>
@@ -252,8 +154,6 @@ function card_html($i){
     <p class="mt-1 text-pink-900/90 text-sm sm:text-base tracking-wide">
       ingatlan eladás apró betűs rész nélkül
     </p>
-    <!-- SEO kedvéért H2 (vizuálisan rejtve, hogy a kinézet ne változzon) -->
-    <h2 class="sr-only">Eladó lakások és házak Budapesten – ingatlanközvetítés átlátható feltételekkel</h2>
   </section>
 
   <!-- KIEMELT/ÚJ INGATLANOK vagy PROMÓKÁRTYA -->
